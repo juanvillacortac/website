@@ -32,7 +32,7 @@
               {#if black}
                 <span
                   class="censure"
-                  >{word.replaceAll(`'`, '')}</span
+                  >{word.replace(new RegExp(`'`, 'g'), '')}</span
                 >&nbsp;
               {:else}
                 {word}&nbsp;
