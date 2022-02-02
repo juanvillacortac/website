@@ -5,6 +5,8 @@ import { imagetools } from 'vite-imagetools';
 import auto from '@sveltejs/adapter-auto';
 import node from '@sveltejs/adapter-node';
 import svg from '@poppanator/sveltekit-svg'
+import pollyfills from 'rollup-plugin-polyfill'
+import path from 'path'
 
 const adapter = () => {
 	switch (process.env.ADAPTER?.toLowerCase()) {
@@ -14,6 +16,8 @@ const adapter = () => {
 			return auto()
 	}
 }
+
+console.log(imagetools())
 
 const GITPOD_HMR_HOST = process.env.GITPOD_HMR_HOST?.substring('https://'.length)
 

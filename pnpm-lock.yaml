@@ -15,12 +15,13 @@ specifiers:
   caravaggio-plugin-nextjs: ^0.4.2
   carbon-icons-svelte: ^10.44.4
   carbon-preprocess-svelte: ^0.6.0
+  rollup-plugin-polyfill: ^3.0.0
   sharp: ^0.29.3
   svelte: ^3.46.3
   svelte-check: ^2.4.1
   svelte-marquee-text-widget: ^1.1.0
   svelte-preprocess: ^4.10.2
-  svelte-windicss-preprocess: 4.2.5
+  svelte-windicss-preprocess: '4.1'
   svelte2tsx: ^0.4.14
   three: ^0.135.0
   tslib: ^2.3.1
@@ -48,10 +49,11 @@ devDependencies:
   '@types/three': 0.135.0
   '@windicss/plugin-icons': 1.0.2
   carbon-preprocess-svelte: 0.6.0_svelte@3.46.3
+  rollup-plugin-polyfill: 3.0.0
   svelte: 3.46.3
   svelte-check: 2.4.1_svelte@3.46.3
   svelte-preprocess: 4.10.2_svelte@3.46.3+typescript@4.5.5
-  svelte-windicss-preprocess: 4.2.5
+  svelte-windicss-preprocess: 4.1.7
   svelte2tsx: 0.4.14_svelte@3.46.3+typescript@4.5.5
   tslib: 2.3.1
   typescript: 4.5.5
@@ -59,12 +61,6 @@ devDependencies:
   windicss: 3.4.3
 
 packages:
-
-  /@antfu/utils/0.3.0:
-    resolution: {integrity: sha512-UU8TLr/EoXdg7OjMp0h9oDoIAVr+Z/oW9cpOxQQyrsz6Qzd2ms/1CdWx8fl2OQdFpxGmq5Vc4TwfLHId6nAZjA==}
-    dependencies:
-      '@types/throttle-debounce': 2.1.0
-    dev: true
 
   /@hapi/bourne/2.0.0:
     resolution: {integrity: sha512-WEezM1FWztfbzqIUbsDzFRVMxSoLy3HugVcux6KDDtTqzPsLE8NDRHfXvev66aH1i2oOKKar3/XDjbvh/OUBdg==}
@@ -74,8 +70,8 @@ packages:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
     dev: true
 
-  /@iconify/json/1.1.432:
-    resolution: {integrity: sha512-ZcQKCnJXmeKDKxSu4vOFCYkCv8sjX1OASTMQpzqVzt3ivBBDudAYyXJlO4hgk0X4B2R0IMHRNvRgCAYkKDa2eQ==}
+  /@iconify/json/1.1.426:
+    resolution: {integrity: sha512-hY0VC4JAnHaXdHkUzNuoSGKS493TN+tu6BVFmT/olNVZgl2ovwiOjNhpEhBHEcOb9DRV6cV5kZH9YeNzMlVTog==}
     dev: true
 
   /@nodelib/fs.scandir/2.1.5:
@@ -244,10 +240,6 @@ packages:
 
   /@types/three/0.135.0:
     resolution: {integrity: sha512-l7WLhIHjhHMtlpyTSltPPAKLpiMwgMD1hXHj59AVUpYRoZP7Fd9NNOSRSvZBCPLpTHPYojgQvSJCoza9zoL7bg==}
-    dev: true
-
-  /@types/throttle-debounce/2.1.0:
-    resolution: {integrity: sha512-5eQEtSCoESnh2FsiLTxE121IiE60hnMqcb435fShf4bpLRjEu1Eoekht23y6zXS9Ts3l+Szu3TARnTsA0GkOkQ==}
     dev: true
 
   /@windicss/plugin-icons/1.0.2:
@@ -650,10 +642,6 @@ packages:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
 
-  /defu/5.0.1:
-    resolution: {integrity: sha512-EPS1carKg+dkEVy3qNTqIdp2qV7mUP08nIsupfwQpz++slCVRw7qbQyWvSTig+kFPwz2XXp5/kIIkH+CwrJKkQ==}
-    dev: true
-
   /delegates/1.0.0:
     resolution: {integrity: sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=}
 
@@ -900,17 +888,6 @@ packages:
       micromatch: 4.0.4
     dev: true
 
-  /fast-glob/3.2.7:
-    resolution: {integrity: sha512-rYGMRwip6lUMvYD3BTScMwT1HtAs2d71SMv66Vrxs0IekGZEjhM0pcMfjQPnknBt2zeCwQMEupiN02ZP4DiT1Q==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@nodelib/fs.stat': 2.0.5
-      '@nodelib/fs.walk': 1.2.8
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.4
-    dev: true
-
   /fast-redact/3.1.0:
     resolution: {integrity: sha512-dir8LOnvialLxiXDPESMDHGp82CHi6ZEYTVkcvdn5d7psdv9ZkkButXrOeXST4aqreIRR+N7CYlsrwFuorurVg==}
     engines: {node: '>=6'}
@@ -1147,11 +1124,6 @@ packages:
 
   /isarray/1.0.0:
     resolution: {integrity: sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=}
-
-  /jiti/1.12.15:
-    resolution: {integrity: sha512-/+K89y6KJA2nISbWrlc/773XdpDgSQq/LdQ+ZZyw2jRxUNyquPtbsDCCCMRzzNORUgroUGc4nAXxJEnQvpViCA==}
-    hasBin: true
-    dev: true
 
   /jmespath/0.15.0:
     resolution: {integrity: sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=}
@@ -1640,6 +1612,12 @@ packages:
       glob: 7.2.0
     dev: true
 
+  /rollup-plugin-polyfill/3.0.0:
+    resolution: {integrity: sha512-LfJ1OR/wJrJdNDVNrdhVm7CgENfaNoQlFYMaQ0vlQH3zO+BMVrBMWDX9k6HVcr9gHsKbthrkiBzWRfFU9fr0hQ==}
+    dependencies:
+      magic-string: 0.25.7
+    dev: true
+
   /rollup/2.67.0:
     resolution: {integrity: sha512-W83AaERwvDiHwHEF/dfAfS3z1Be5wf7n+pO3ZAO5IQadCT2lBTr7WQ2MwZZe+nodbD+n3HtC4OCOAdsOPPcKZQ==}
     engines: {node: '>=10.0.0'}
@@ -1940,12 +1918,10 @@ packages:
       typescript: 4.5.5
     dev: true
 
-  /svelte-windicss-preprocess/4.2.5:
-    resolution: {integrity: sha512-QTZ0jwIeuBeomazj3SNzZzncOFuSyngpTwnT5lZ0XgP4o2EEu+nF67QgaQHqy9P6wfRuT8l2SycD/ZkGEaD2VA==}
+  /svelte-windicss-preprocess/4.1.7:
+    resolution: {integrity: sha512-+jQD1zlpOlKg1AFOs/2wrubzUbRzG4KBCzeho7kXyUoSi4OOWqMP1l4roHZTEOqLqmja4eVi0RVEI5RhjqgZIA==}
     dependencies:
-      '@iconify/json': 1.1.432
-      fast-glob: 3.2.7
-      unconfig: 0.2.2
+      '@iconify/json': 1.1.426
       windicss: 3.2.1
       windicss-runtime-dom: 3.0.0
     dev: true
@@ -2038,14 +2014,6 @@ packages:
     resolution: {integrity: sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
-
-  /unconfig/0.2.2:
-    resolution: {integrity: sha512-JN1MeYJ/POnjBj7NgOJJxPp6+NcD6Nd0hEuK0D89kjm9GvQQUq8HeE2Eb7PZgtu+64mWkDiqeJn1IZoLH7htPg==}
-    dependencies:
-      '@antfu/utils': 0.3.0
-      defu: 5.0.1
-      jiti: 1.12.15
     dev: true
 
   /universalify/2.0.0:

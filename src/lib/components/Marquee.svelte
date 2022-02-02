@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import './marquee.css'
   export let duration = 15
   export let repeat = 2
   export let paused = false
@@ -31,7 +32,7 @@
     width: 100000px;
   }
   .marquee-text {
-    animation-name: animation;
+    animation-name: -global-marquee;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     float: left;

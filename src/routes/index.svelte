@@ -3,12 +3,7 @@
 </script>
 
 <script>
-  import {
-    About,
-    Black,
-    Hero,
-    Projects,
-  } from '$lib/sections/home'
+  import { About, Black, Hero, Projects } from '$lib/sections/home'
 </script>
 
 <Hero />
@@ -16,3 +11,6 @@
   <About />
 </Black>
 <Projects />
+
+<style>
+</style>

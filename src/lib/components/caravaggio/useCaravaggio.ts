@@ -3,7 +3,7 @@ import { get } from 'svelte/store';
 import type { CaravaggioContext, CaravaggioOptions } from './urlBuilder'
 import { urlBuilder } from './urlBuilder';
 
-const useCaravaggioContext = (): CaravaggioContext => ({ url: 'https://caravaggio-cdn.vercel.app', baseUrl: get(session).host })
+const useCaravaggioContext = (): CaravaggioContext => ({ url: 'https://caravaggio-cdn.vercel.app' })
 
 /**
  * Given an image, return the url with the transofmrations applied
@@ -15,7 +15,8 @@ export const useCaravaggio = (
   opt?: CaravaggioOptions,
 ): string | undefined => {
   const context = useCaravaggioContext();
-  if(!imageUrl) return undefined;
+  context.baseUrl = get(session)?.host
+  if (!imageUrl) return undefined;
   return urlBuilder(context, imageUrl, opt);
 };
 
@@ -45,6 +46,7 @@ export const useCaravaggioIfAvailable = (
   opt?: CaravaggioOptions,
 ): string | null | undefined => {
   const context = useCaravaggioContext();
+  context.baseUrl = get(session)?.host
   if (!context || !imageUrl) {
     return imageUrl;
   }
@@ -55,8 +57,9 @@ type CaravaggioBuilder = (imageUrl: string, opt?: CaravaggioOptions) => string;
 /**
  * Return a function that you can use to get transformed image urls
  */
-export const useCaravaggioBuilder = (): CaravaggioBuilder => {
+export const useCaravaggioBuilder = (baseUrl?: string): CaravaggioBuilder => {
   const context = useCaravaggioContext();
+  context.baseUrl = baseUrl || get(session)?.host
   const builder: CaravaggioBuilder = (imageUrl, opt) => {
     return urlBuilder(context, imageUrl, opt);
   };

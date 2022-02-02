@@ -1,8 +1,8 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { useCaravaggioBuilder } from "$lib/components/caravaggio/useCaravaggio";
 
-export const get: RequestHandler = () => {
-  const imageBuilder = useCaravaggioBuilder()
+export const get: RequestHandler = (event) => {
+  const imageBuilder = useCaravaggioBuilder(event.url.protocol + '//' + event.url.host)
   const iconsRes = [36, 48, 72, 96, 144, 192, 256, 384, 512]
   const getIcon = (res: number) =>
     imageBuilder('/logo.png', {
