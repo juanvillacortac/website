@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
   import { Viewport } from '$lib'
-  import Image from '$lib/components/caravaggio/Image.svelte'
+import Image from '$lib/components/caravaggio/Image.svelte';
+import { seo } from '$lib/seo.gq';
   import { layoutStore } from '$lib/stores'
+  const inString = (s: string) => /^~.*~$/.test(s)
+  const title = `I'm a full-stack freelancer from ~Venezuela~`
 </script>
 
 <div class="c-lg relative" id="about">
@@ -27,7 +30,15 @@
   >
     <div class="flex flex-col space-y-8">
       <h2 class="font-black text-4xl anim">
-        I'm a full-stack freelancer from <span class="censure">Venezuela </span>
+        {#each title.split(' ') as word}
+          {#if inString(word)}
+            <span class="censure inline-block"
+              >{word.replace(new RegExp(`~`, 'g'), '')}&nbsp;</span
+            >
+          {:else}
+            <span class="inline-block">{word}&nbsp;</span>
+          {/if}
+        {/each}
       </h2>
       <p class="anim" style="--anim-d: 300ms">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet
@@ -44,16 +55,19 @@
       class="flex w-full anim justify-center items-center"
       style="aspect-ratio: 1/1; --anim-y: 0; --anim-x: 0.5rem; --anim-d: 600ms"
     >
-      <img src="https://avatars.githubusercontent.com/u/37244056?v=4"
+      <!-- <img
+        src="https://avatars.githubusercontent.com/u/37244056?v=4"
         alt=""
         width="260"
         height="260"
+      /> -->
+      <Image
+        src={$seo._site.favicon.url}
+        loading="lazy"
         class="h-auto mx-auto border-2 border-gray-900 rounded-[50%] flex-shrink-0 leading-none w-full inline-block overflow-hidden align-middle !lg:w-2/3"
         style="box-shadow: 0 0 0 2px rgb(17, 34, 39)"
-      >
-      <!-- <Image
-        src="/logo.png"
-        loading="lazy"
+        width="500"
+        height="500"
         options={{
           o: 'webp',
           rs: {
@@ -61,7 +75,7 @@
             s: '500x500',
           },
         }}
-      /> -->
+      />
     </div>
   </Viewport>
 </div>

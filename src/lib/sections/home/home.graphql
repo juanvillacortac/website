@@ -1,0 +1,35 @@
+fragment ResponsiveImageFragment on ResponsiveImage {
+  alt
+  width
+  aspectRatio
+  base64
+  bgColor
+  height
+  sizes
+  src
+  srcSet
+  title
+  webpSrcSet
+}
+
+query home {
+  hero: home {
+    title: heroTitle
+    text: heroText
+  }
+  projects: allProjects {
+    name
+    url
+    image {
+      url
+      responsiveImage(imgixParams: {
+        w: 800,
+        h: 450,
+        fit: crop,
+        q: 60,
+      }) {
+        ...ResponsiveImageFragment
+      }
+    }
+  }
+}

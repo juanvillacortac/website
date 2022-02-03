@@ -13,23 +13,29 @@
 <script lang="ts">
   import Hoverable from '$lib/components/Hoverable.svelte'
   import Viewport from '$lib/components/Viewport.svelte'
+  import { Marquee } from '$lib'
 
   export let status: number
   export let error: { frame: string; stack: string; message: string }
 </script>
 
 <div
-  class="flex flex-col h-screen text-4xl c justify-center sm:space-y-4 sm:text-7xl"
+  class="flex flex-col h-screen text-4xl justify-center sm:space-y-4 sm:text-7xl"
 >
   <Viewport
     class="flex flex-col space-y-10"
     style="--anim-y: 0.5rem; --anim-t: 0.5s"
     oneWay
   >
-    <h1 class="font-black text-white -ml-2 anim">
-      Oops, error <Hoverable class="inline-flex">{status}</Hoverable>
-    </h1>
-    <p class="font-bold text-white text-xl anim" style="--anim-d: 200ms">
+    <div
+      class="border-black flex font-black font-bakbak bg-yellow-500 border-t-4 border-b-4 text-black w-full transform-gpu shadow-2xl text-8xl"
+    >
+      <Marquee duration={15} repeat={6}
+        ><span class="px-12 select-none uppercase">Error {status}</span
+        ></Marquee
+      >
+    </div>
+    <p class="font-black text-xl c anim" style="--anim-d: 200ms">
       {error.message}
     </p>
   </Viewport>

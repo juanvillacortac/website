@@ -1,5 +1,8 @@
 <script lang="ts">
   import { layoutStore, Viewport, Marquee } from '$lib'
+  import { home } from './home.gq'
+
+  $: hero = $home.hero
 
   const title = `Hello, 'f**king' world`
 
@@ -19,7 +22,7 @@
       oneWay
     >
       <h3 class="font-bakbak lg:text-8xl">
-        {#each title.split(' ') as word, idx}
+        {#each hero.title.split(' ') as word, idx}
           {@const black = inString(word)}
           <span class="pb-2 overflow-hidden inline-block">
             <div
@@ -30,8 +33,7 @@
               style="-webkit-text-stroke: 2px; -webkit-text-fill-color: transparent"
             >
               {#if black}
-                <span
-                  class="censure"
+                <span class="censure"
                   >{word.replace(new RegExp(`'`, 'g'), '')}</span
                 >&nbsp;
               {:else}
@@ -46,7 +48,7 @@
         class="font-bakbak font-normal text-4xl anim justify-self-end sm:w-1/2 !sm:text-5xl"
         style="--anim-y: 1rem; --anim-d: 1000ms; -webkit-text-stroke: 1.5px; -webkit-text-fill-color: transparent"
       >
-        I'm Juan Villacorta, a crazy web developer
+        {hero.text}
       </p>
     </Viewport>
   </div>
@@ -54,12 +56,16 @@
     <div
       class="border-black flex font-black font-bakbak bg-yellow-500 border-t-4 border-b-4 text-black w-full transform-gpu shadow-2xl text-6xl scale-125 rotate-12"
     >
-      <Marquee duration={15} repeat={4}><span class="px-12 select-none">DON'T SCROLL!</span></Marquee>
+      <Marquee duration={15} repeat={4}
+        ><span class="px-12 select-none">DON'T SCROLL!</span></Marquee
+      >
     </div>
     <div
       class="border-black flex font-black font-bakbak bg-yellow-500 border-t-4 border-b-4 text-black w-full transform-gpu shadow-2xl text-6xl scale-125 -rotate-12"
     >
-      <Marquee duration={15} repeat={4}><span class="px-12 select-none">DON'T SCROLL!</span></Marquee>
+      <Marquee duration={15} repeat={4}
+        ><span class="px-12 select-none">DON'T SCROLL!</span></Marquee
+      >
     </div>
   </div>
 </div>

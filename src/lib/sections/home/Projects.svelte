@@ -1,34 +1,8 @@
 <script lang="ts">
   import { Viewport, XScroller, layoutStore } from '$lib'
   import { Add32 } from 'carbon-icons-svelte'
-  import Image from '$lib/components/caravaggio/Image.svelte'
-
-  export const pages = [
-    {
-      name: 'YES Campus',
-      href: 'https://yescampus.io',
-      align: 'flex-end',
-      image: '/images/projects/kmb.png',
-    },
-    {
-      name: 'WC Consultores',
-      href: 'https://wcconsultores.com',
-      align: 'flex-start',
-      image: '/images/projects/arepa.png',
-    },
-    {
-      name: 'Jevitas Intensas',
-      href: 'https://jevitasintensas.com',
-      align: 'flex-end',
-      image: '/images/projects/xd.png',
-    },
-    {
-      name: 'KMB Motors',
-      href: 'https://kmbmotors.vercel.app',
-      align: 'flex-start',
-      image: '/images/projects/xd.png',
-    },
-  ]
+  import { home } from './home.gq'
+  import { Image as Img } from 'svelte-datocms'
 </script>
 
 <div
@@ -45,13 +19,15 @@
     <XScroller>
       <div class="flex w-full">
         <div class="flex h-screen py-24 px-[7vw] gap-24">
-          {#each pages as p, idx}
+          {#each $home.projects as p, idx}
             <a
-              href={p.href}
-              rel={p.href.startsWith('/') ? undefined : 'external'}
-              target={p.href.startsWith('/') ? undefined : '_target'}
+              href={p.url}
+              rel={p.url.startsWith('/') ? undefined : 'external'}
+              target={p.url.startsWith('/') ? undefined : '_target'}
               class="flex h-7/10 transform duration-400 self-center relative hover:scale-99"
-              style="aspect-ratio: 16/9; align-self: {p.align}"
+              style="aspect-ratio: 16/9; align-self: {idx % 2 != 0
+                ? 'flex-start'
+                : 'flex-end'}"
             >
               <p
                 class="font-bakbak text-center opacity-75 top-[-4rem] right-[-5.2rem] text-9xl w-32 mix-blend-difference absolute"
@@ -62,8 +38,16 @@
               <div
                 class="rounded-xl flex h-full bg-gray-500 shadow-xl w-full overflow-hidden relative"
               >
-                <Image
-                  src={p.image}
+                <Img
+                  lazyLoad
+                  data={{
+                    ...p.image.responsiveImage,
+                    title: p.name,
+                    alt: p.name,
+                  }}
+                />
+                <!-- <Image
+                  src={p.image.url}
                   class="h-full w-auto"
                   loading="lazy"
                   width="800"
@@ -75,7 +59,7 @@
                       s: '800x',
                     },
                   }}
-                />
+                /> -->
               </div>
               <h4
                 class="font-bakbak opacity-75 bottom-[-4rem] text-5xl mix-blend-difference absolute"

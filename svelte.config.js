@@ -6,6 +6,7 @@ import auto from '@sveltejs/adapter-auto';
 import node from '@sveltejs/adapter-node';
 import svg from '@poppanator/sveltekit-svg'
 import pollyfills from 'rollup-plugin-polyfill'
+import gQueryCodegen from '@leveluptuts/g-query/codegen'
 import path from 'path'
 
 const adapter = () => {
@@ -16,8 +17,6 @@ const adapter = () => {
 			return auto()
 	}
 }
-
-console.log(imagetools())
 
 const GITPOD_HMR_HOST = process.env.GITPOD_HMR_HOST?.substring('https://'.length)
 
@@ -45,7 +44,16 @@ const config = {
 			plugins: [
 				svg(),
 				imagetools(),
+				gQueryCodegen({
+					// Required
+					schema: './src/lib/schema.graphql', // path to schema, schema is required
+					out: './src/lib/gquery', // Where you want the general schema types to output
+					gPath: '$lib/config/g', // Path to g, created in step 1.
+				})
 			],
+			ssr: {
+        external: ['datocms-listen']
+      },
 			server: {
 				hmr: GITPOD_HMR_HOST ? {
 					clientPort: 443,

@@ -20,6 +20,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "package": "svelte-kit package",
+    "gql:fetch": "gq https://graphql.datocms.com/ -H 'Authorization: Bearer 973edca6027459ff9951d5e4674035' --introspect > src/lib/schema.graphql",
     "postbuild@comment": "cp node_modules/sharp/build .vercel_build_output/functions/node/render -r;cp node_modules/sharp/vendor/8.11.3/linux-x64/lib/libvips-cpp.so.42 .vercel_build_output/functions/node/render/;ls .vercel_build_output/functions/node/render/"
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "@types/three": "^0.135.0",
     "@windicss/plugin-icons": "^1.0.2",
     "carbon-preprocess-svelte": "^0.6.0",
+    "graphqurl": "^1.0.1",
     "rollup-plugin-polyfill": "^3.0.0",
     "svelte": "^3.46.3",
     "svelte-check": "^2.4.1",
@@ -47,10 +49,14 @@
   },
   "type": "module",
   "dependencies": {
+    "@leveluptuts/g-query": "^0.2.2",
+    "@leveluptuts/svelte-toy": "^0.0.18",
     "caravaggio": "^3.6.2",
     "caravaggio-plugin-nextjs": "^0.4.2",
     "carbon-icons-svelte": "^10.44.4",
+    "graphql-tag": "^2.12.6",
     "sharp": "^0.29.3",
+    "svelte-datocms": "^0.6.3",
     "svelte-marquee-text-widget": "^1.1.0",
     "three": "^0.135.0"
   }

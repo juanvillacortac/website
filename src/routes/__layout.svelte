@@ -1,3 +1,12 @@
+<script lang="ts" context="module">
+  import type { Load } from '@sveltejs/kit'
+  import { getSeo, seo } from '$lib/seo.gq'
+  export const load: Load = async ({ fetch }) => {
+    await getSeo({ fetch })
+    return {}
+  }
+</script>
+
 <script lang="ts">
   import { Gradient } from '$lib'
   import Hoverable from '$lib/components/Hoverable.svelte'
@@ -30,14 +39,14 @@
 
 <svelte:head>
   <title>Juan Villacorta</title>
-  <link rel="preconnect" href="https://caravaggio-cdn.vercel.app">
+  <link rel="preconnect" href="https://caravaggio-cdn.vercel.app" />
   {@html fontsTag}
 </svelte:head>
 
 <Base />
 <Components />
 
-<Favicons favicon="/logo.png" themeColor="#000" titleName="Juan Villacorta" />
+<Favicons favicon={$seo._site.favicon?.url} themeColor="#000" titleName="Juan Villacorta" />
 
 <div class="relative" style="background-color: {$layoutStore.bg}">
   {#if !$session?.userAgent?.match('Lighthouse|Google Page Speed Insights|Googlebot')}
