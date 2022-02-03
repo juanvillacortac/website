@@ -50,7 +50,7 @@
       </p>
     </Viewport>
   </div>
-  <div class="py-24 !pb-50">
+  <div class="py-24 !pb-60">
     <div
       class="border-black flex font-black font-bakbak bg-yellow-500 border-t-4 border-b-4 text-black w-full transform-gpu shadow-2xl text-6xl scale-125 rotate-12"
     >
