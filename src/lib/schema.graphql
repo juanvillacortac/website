@@ -202,6 +202,11 @@ type HomeRecord {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  aboutBody(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
+  aboutTitle: String
   createdAt: DateTime!
   heroText: String
   heroTitle: String
@@ -1731,11 +1736,39 @@ input OrientationFilter {
   neq: UploadOrientation
 }
 
+"""Specifies how to filter by position (sorted and tree-like collections)"""
+input PositionFilter {
+  """
+  Filter records with a value that's strictly greater than the one specified
+  """
+  gt: IntType
+
+  """Filter records with a value that's less than the one specified"""
+  lt: IntType
+
+  """
+  Filter records with a value that's greater than or equal to the one specified
+  """
+  gte: IntType
+
+  """
+  Filter records with a value that's less or equal than the one specified
+  """
+  lte: IntType
+
+  """Search for records with an exact match"""
+  eq: IntType
+
+  """Exclude records with an exact match"""
+  neq: IntType
+}
+
 input ProjectModelFilter {
   _createdAt: CreatedAtFilter
   createdAt: CreatedAtFilter
   id: ItemIdFilter
   _firstPublishedAt: PublishedAtFilter
+  position: PositionFilter
   _publicationScheduledAt: PublishedAtFilter
   _unpublishingScheduledAt: PublishedAtFilter
   _publishedAt: PublishedAtFilter
@@ -1758,6 +1791,8 @@ enum ProjectModelOrderBy {
   id_DESC
   _firstPublishedAt_ASC
   _firstPublishedAt_DESC
+  position_ASC
+  position_DESC
   _publicationScheduledAt_ASC
   _publicationScheduledAt_DESC
   _unpublishingScheduledAt_ASC
@@ -1799,6 +1834,7 @@ type ProjectRecord {
   id: ItemId!
   image: FileField
   name: String
+  position: IntType
   updatedAt: DateTime!
   url: String
 }
@@ -1874,7 +1910,7 @@ type Query {
     """Limit the number of results"""
     first: IntType = 20
     filter: ProjectModelFilter
-    orderBy: [ProjectModelOrderBy] = [_updatedAt_DESC]
+    orderBy: [ProjectModelOrderBy] = [position_ASC]
   ): [ProjectRecord!]!
 
   """Returns a collection of assets"""
@@ -1902,7 +1938,7 @@ type Query {
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
     filter: ProjectModelFilter
-    orderBy: [ProjectModelOrderBy] = [_updatedAt_DESC]
+    orderBy: [ProjectModelOrderBy] = [position_ASC]
   ): ProjectRecord
 
   """Returns a specific asset"""
