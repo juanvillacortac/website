@@ -8,14 +8,14 @@ import { seo } from '$lib/seo.gq';
 </script>
 
 <div class="c-lg relative" id="about">
-  <div class="flex h-full top-0 w-[calc(100%-2rem)] absolute items-center">
+  <div class="flex h-full top-0 absolute items-renter !w-[calc(100%-2rem)]">
     <div
       class="bg-[blue] rounded-full opacity-20 left-0 w-2/3 duration-400 filter blur-[5rem] sm:blur-[10rem]"
       style="aspect-ratio: 1/1"
       class:opacity-0={$layoutStore.gradientVisible}
     />
   </div>
-  <div class="flex h-full w-full top-0 absolute items-center justify-end">
+  <div class="flex h-full top-0 absolute items-center justify-end !w-[calc(100%-2rem)]">
     <div
       class="rounded-full bg-[#ff61ab] opacity-30 left-0 w-2/3 duration-400 filter blur-[5rem] sm:blur-[10rem]"
       style="aspect-ratio: 1/1"
@@ -66,13 +66,13 @@ import { seo } from '$lib/seo.gq';
         loading="lazy"
         class="h-auto mx-auto border-2 border-gray-900 rounded-[50%] flex-shrink-0 leading-none w-full inline-block overflow-hidden align-middle !lg:w-2/3"
         style="box-shadow: 0 0 0 2px rgb(17, 34, 39)"
-        width="500"
-        height="500"
+        width="200"
+        height="200"
         options={{
           o: 'webp',
           rs: {
             m: 'fit',
-            s: '500x500',
+            s: '200x200',
           },
         }}
       />

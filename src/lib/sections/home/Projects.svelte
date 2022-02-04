@@ -40,6 +40,7 @@
               >
                 <Img
                   lazyLoad
+                  explicitWidth={false}
                   data={{
                     ...p.image.responsiveImage,
                     title: p.name,

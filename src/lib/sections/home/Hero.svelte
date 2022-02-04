@@ -4,8 +4,6 @@
 
   $: hero = $home.hero
 
-  const title = `Hello, 'f**king' world`
-
   const inString = (s: string) => /^'.*'$/.test(s)
 </script>
 

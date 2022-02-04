@@ -85,8 +85,7 @@
       </Hoverable>
       <div class="hidden sm:block">
         <div class="flex space-x-4 links items-center relative">
-          <a href="/#services" class="font-black relative">Services</a>
-          <a href="/#about" class="font-black relative">About Us</a>
+          <a href="/#about" class="font-black relative">About me</a>
           <a href="/#works" class="font-black relative">Portfolio</a>
         </div>
       </div>
