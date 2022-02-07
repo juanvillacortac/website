@@ -190,6 +190,8 @@ export type HomeRecord = {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  aboutBody?: Maybe<Scalars['String']>;
+  aboutTitle?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   heroText?: Maybe<Scalars['String']>;
   heroTitle?: Maybe<Scalars['String']>;
@@ -201,6 +203,12 @@ export type HomeRecord = {
 /** Record of type Home (home) */
 export type HomeRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Home (home) */
+export type HomeRecordAboutBodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ImgixParams = {
@@ -1585,6 +1593,22 @@ export type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
+/** Specifies how to filter by position (sorted and tree-like collections) */
+export type PositionFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['IntType']>;
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['IntType']>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['IntType']>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['IntType']>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['IntType']>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['IntType']>;
+};
+
 export type ProjectModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<ProjectModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
@@ -1599,6 +1623,7 @@ export type ProjectModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   name?: InputMaybe<StringFilter>;
+  position?: InputMaybe<PositionFilter>;
   updatedAt?: InputMaybe<UpdatedAtFilter>;
   url?: InputMaybe<StringFilter>;
 };
@@ -1626,6 +1651,8 @@ export enum ProjectModelOrderBy {
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
+  PositionAsc = 'position_ASC',
+  PositionDesc = 'position_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC',
   UrlAsc = 'url_ASC',
@@ -1650,6 +1677,7 @@ export type ProjectRecord = {
   id: Scalars['ItemId'];
   image?: Maybe<FileField>;
   name?: Maybe<Scalars['String']>;
+  position?: Maybe<Scalars['IntType']>;
   updatedAt: Scalars['DateTime'];
   url?: Maybe<Scalars['String']>;
 };

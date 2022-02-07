@@ -1,9 +1,20 @@
-<slot/>
+<slot />
 
 <style global windi:global>
   @keyframes -global-marquee-animation {
     100% {
       transform: translateX(-100%);
+    }
+  }
+
+  @keyframes -global-rotate {
+    0% {
+      -webkit-transform: rotate(0turn);
+      transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(0turn);
+      transform: rotate(1turn);
     }
   }
 

@@ -34,5 +34,5 @@
 </Black>
 <Projects />
 
-<style>
+<style global>
 </style>

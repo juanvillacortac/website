@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-  import { Gradient } from '$lib'
+  import { Gradient, Grain } from '$lib'
   import Hoverable from '$lib/components/Hoverable.svelte'
 
   import Base from '$lib/styles/Base.svelte'
@@ -46,11 +46,12 @@
 <Base />
 <Components />
 
-<Favicons favicon={$seo._site.favicon?.url} themeColor="#000" titleName="Juan Villacorta" />
+<Favicons favicon={$seo?._site?.favicon?.url} themeColor="#000" titleName="Juan Villacorta" />
 
 <div class="relative" style="background-color: {$layoutStore.bg}">
   {#if !$session?.userAgent?.match('Lighthouse|Google Page Speed Insights|Googlebot')}
     <Gradient fixed bind:visible={$layoutStore.gradientVisible} />
+    <Grain />
   {/if}
   <div class="text-gray-900 relative">
     <div class="flex w-full p-8 top-0 z-90 fixed justify-between items-center">

@@ -1,0 +1,21 @@
+@media (min-width: 768px) {
+  .services {
+    grid-gap: 40px 48px;
+    display: grid;
+    gap: 40px 48px;
+    grid: repeat(2, 200px) / repeat(3, 152px);
+    max-width: 680px;
+    padding-top: 32px;
+  }
+}
+
+@keyframes -global-rotate {
+  0% {
+    -webkit-transform: rotate(0turn);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(0turn);
+    transform: rotate(1turn);
+  }
+}

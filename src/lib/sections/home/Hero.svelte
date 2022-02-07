@@ -2,7 +2,7 @@
   import { layoutStore, Viewport, Marquee } from '$lib'
   import { home } from './home.gq'
 
-  $: hero = $home.hero
+  $: hero = $home?.hero
 
   const inString = (s: string) => /^'.*'$/.test(s)
 </script>
@@ -20,7 +20,7 @@
       oneWay
     >
       <h3 class="font-bakbak lg:text-8xl">
-        {#each hero.title.split(' ') as word, idx}
+        {#each !hero ? [] : hero?.title?.split(' ') as word, idx}
           {@const black = inString(word)}
           <span class="pb-2 overflow-hidden inline-block">
             <div
@@ -46,7 +46,7 @@
         class="font-bakbak font-normal text-4xl anim justify-self-end sm:w-1/2 !sm:text-5xl"
         style="--anim-y: 1rem; --anim-d: 1000ms; -webkit-text-stroke: 1.5px; -webkit-text-fill-color: transparent"
       >
-        {hero.text}
+        {hero?.text}
       </p>
     </Viewport>
   </div>

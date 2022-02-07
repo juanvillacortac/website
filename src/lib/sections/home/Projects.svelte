@@ -19,7 +19,7 @@
     <XScroller>
       <div class="flex w-full">
         <div class="flex h-screen py-24 px-[7vw] gap-24">
-          {#each $home.projects as p, idx}
+          {#each $home?.projects || [] as p, idx}
             <a
               href={p.url}
               rel={p.url.startsWith('/') ? undefined : 'external'}
@@ -36,7 +36,7 @@
                 {idx + 1}
               </p>
               <div
-                class="rounded-xl flex h-full bg-gray-500 shadow-xl w-full overflow-hidden relative"
+                class="rounded-xl flex h-full bg-gray-500 shadow-xl w-full overflow-hidden relative project"
               >
                 <Img
                   lazyLoad
@@ -89,4 +89,8 @@
 </div>
 
 <style windi:global>
+  .project :global(img), .project > :global(div) {
+    width: 100%;
+    height: auto;
+  }
 </style>
