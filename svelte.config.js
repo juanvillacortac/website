@@ -52,7 +52,7 @@ const config = {
 				})
 			],
 			ssr: {
-        external: ['datocms-listen']
+        // external: ['datocms-listen'],
       },
 			server: {
 				hmr: GITPOD_HMR_HOST ? {

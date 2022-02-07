@@ -96,14 +96,14 @@
           o: 'webp',
           rs: {
             m: 'fit',
-            s: '200x200',
+            s: '500x500',
           },
         }}
       />
     </div>
   </Viewport>
   <Viewport class="flex w-full py-16" --a-d="0.2s" --a-y="0.5rem" oneWay>
-    <div class="flex flex-col space-y-8 lg:w-1/2" use:toggleGradientAction>
+    <div class="flex flex-col space-y-8 lg:w-1/2">
       <h2 class="font-black text-4xl anim">My frontend stack</h2>
       <div class="services">
         {#each services as s, idx}
