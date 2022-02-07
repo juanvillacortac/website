@@ -55,10 +55,10 @@ const config = {
         // external: ['datocms-listen'],
       },
 			server: {
-				hmr: GITPOD_HMR_HOST ? {
-					clientPort: 443,
-					host: GITPOD_HMR_HOST
-				} : undefined,
+				hmr: {
+					clientPort: GITPOD_HMR_HOST ? 443 : 24678,
+					host: GITPOD_HMR_HOST || "localhost",
+				},
 			},
 		},
 	}
